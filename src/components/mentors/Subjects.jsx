@@ -33,7 +33,7 @@ export default class Subjects extends Component {
   	})
 
   	this.setState({subjects: filtered}, function() {
-  		console.log('yoo', this.state.subjects)
+  		console.log('yoolo', this.state.subjects)
   	})
 
 		}
