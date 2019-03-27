@@ -43,7 +43,15 @@ export default class Subjects extends Component {
 			this.setState({search: event.target.value.substr(0,20)});
 	}
 
+	addSubject(event) {
+		const newSubjects = this.state.subjects.slice();
+		if(newSubjects.indexOf(event.target.innerHTML) === -1){
 
+
+		newSubjects.push(event.target.innerHTML)
+		this.setState({subjects: newSubjects})
+		}
+	}
 
 
 
@@ -51,7 +59,7 @@ export default class Subjects extends Component {
 	render() {
 		let filtered = this.list.filter(
 			(list) => {
-				return list.indexOf(this.state.search) !== -1;
+				return list.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
 			})
 		return (
 			<div>
@@ -64,11 +72,13 @@ export default class Subjects extends Component {
 						onChange={this.updateSearch.bind(this)} />
 				</div>
 				<div>
-					<ul>
+					<div>
 						{filtered.map((subject) =>{
-							return <li>{subject}</li>
+							return <div>
+								<button onClick={this.addSubject.bind(this)}>{subject}</button>
+							</div>
 						})}
-					</ul>
+					</div>
 				</div>
 			</div>
 		);
