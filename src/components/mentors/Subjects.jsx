@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Availability from './Availability';
 
 export default class Subjects extends Component {
 
@@ -7,7 +8,18 @@ export default class Subjects extends Component {
 	    this.state = {
 	      subjects: ['psychology', 'science'],
 	      search: '',
-    	}
+	 			price: 0,
+	 			availability: {
+	 				Sunday: false,
+	 				Monday: false,
+	 				Tuesday: false,
+	 				Wednesday: false,
+	 				Thursday: false,
+	 				Friday: false,
+	 				Saturday: false,
+	 			}
+	     }
+   
     	this.subjects = ['computer', 'chem', 'history']
     	console.log(this.state.subjects)
     	this.remove = this.remove.bind(this);
@@ -79,6 +91,12 @@ export default class Subjects extends Component {
 							</div>
 						})}
 					</div>
+				</div>
+				<div>
+					<h3>Price</h3>
+					<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange" />
+</div>
 				</div>
 			</div>
 		);
