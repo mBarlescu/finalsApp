@@ -1,3 +1,6 @@
+
+
+
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch } from "react-router-dom"
 import './App.css';
@@ -11,7 +14,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faIgloo } from '@fortawesome/free-solid-svg-icons'
 
+
+const axios = require('axios');
+
 library.add(faIgloo)
+
 
 
 class App extends Component {
@@ -24,10 +31,17 @@ class App extends Component {
       }
     }
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({responseL res.express }))
-      .catch(err => console.log(err));
+    console.log('hello there');
+    axios.get('http://localhost:3000/api/hello')
+      .then(res => {
+        console.log('get request', res.data.express)
+      })
+      .catch(err => {
+        console.log('error', err)
+      })
   }
+
+
 
   render() {
     return (
