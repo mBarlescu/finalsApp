@@ -15,6 +15,20 @@ library.add(faIgloo)
 
 
 class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        response: '',
+        post: '',
+        responsePost: '',
+      }
+    }
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({responseL res.express }))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <BrowserRouter>
