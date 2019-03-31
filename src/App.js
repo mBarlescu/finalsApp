@@ -34,7 +34,7 @@ class App extends Component {
     console.log('hello there');
     axios.get('http://localhost:3000/api/hello')
       .then(res => {
-        console.log('get requestt', res.data.express)
+        console.log('get request', res.data.express)
       })
       .catch(err => {
         console.log('error', err)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Availability from './Availability';
+import axios from 'axios';
 
 export default class Subjects extends Component {
 
@@ -17,7 +18,8 @@ export default class Subjects extends Component {
 	 				Thursday: false,
 	 				Friday: false,
 	 				Saturday: false,
-	 			}
+	 			},
+	 			post: '',
 	     }
    
     	this.subjects = ['computer', 'chem', 'history']
@@ -38,6 +40,16 @@ export default class Subjects extends Component {
   		)
   	})
   }
+
+  handleSubmit(e){
+  	e.preventDefault();
+  	let text = this.state.post;
+  	axios.post('http://localhost:3000/api/world', { text } )
+  	.then(res => {
+  		console.log('published', res)
+  	})
+  	}
+
   remove(subject){
 
   	const filtered = this.state.subjects.filter((each)=>{
@@ -65,7 +77,17 @@ export default class Subjects extends Component {
 		}
 	}
 
+	inputValue(e){
+		e.preventDefault();
+		let text = e.target.value;
+		console.log('dude', e.target.value)
+		this.setState({post: text});
+		console.log('OK MAN', this.state)
+	}
 
+	componentDidMount(){
+		console.log('state', this.state)
+	}
 
 
 	render() {
@@ -86,7 +108,7 @@ export default class Subjects extends Component {
 				<div>
 					<div>
 						{filtered.map((subject) =>{
-							return <div>
+							return <div key={subject}>
 								<button onClick={this.addSubject.bind(this)}>{subject}</button>
 							</div>
 						})}
@@ -95,9 +117,20 @@ export default class Subjects extends Component {
 				<div>
 					<h3>Price</h3>
 					<div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="myRange" />
-</div>
+  					<input type="range" min="1" max="100" value="50" class="slider" id="myRange" />
+					</div>
 				</div>
+				<div>
+					<form onSubmit={this.handleSubmit.bind(this)}>
+						<p>
+							Post to Server:
+						</p>
+						<input type='text' value={this.state.post} onChange={this.inputValue.bind(this)}
+						/>
+						<button type='submit'>Submit</button>
+					</form>
+				</div>
+				<h1>{this.state.post}</h1>
 			</div>
 		);
 	}
