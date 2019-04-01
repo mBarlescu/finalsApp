@@ -1,6 +1,4 @@
 
-
-
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch } from "react-router-dom"
 import './App.css';
@@ -34,7 +32,7 @@ class App extends Component {
     console.log('hello there');
     axios.get('http://localhost:3000/api/hello')
       .then(res => {
-        console.log('get request', res.data.express)
+        console.log('get request', res.data)
       })
       .catch(err => {
         console.log('error', err)

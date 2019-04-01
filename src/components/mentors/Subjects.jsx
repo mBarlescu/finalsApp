@@ -131,6 +131,7 @@ export default class Subjects extends Component {
 					</form>
 				</div>
 				<h1>{this.state.post}</h1>
+				<h1>process.env.USER</h1>
 			</div>
 		);
 	}
